@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxki067pq17np"]
+[gd_scene load_steps=10 format=3 uid="uid://cxki067pq17np"]
 
 [ext_resource type="PackedScene" uid="uid://depc4iowkrjdy" path="res://Scenes/player.tscn" id="1_a02cp"]
 
@@ -14,6 +14,9 @@ background_mode = 2
 sky = SubResource("Sky_a02cp")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fo5ed"]
+albedo_color = Color(0, 0.47194552, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a02cp"]
 albedo_color = Color(0.61960787, 0.4862745, 1, 1)
@@ -33,7 +36,7 @@ albedo_color = Color(1, 0, 0, 1)
 environment = SubResource("Environment_go701")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 4, 31, 12)
 shadow_enabled = true
 
 [node name="Map" type="Node3D" parent="."]
@@ -43,6 +46,7 @@ transform = Transform3D(110.47895, 0, 0, 0, 1, 0, 0, 0, 111.24309, 0, -0.4995, 0
 use_collision = true
 collision_mask = 2
 size = Vector3(1, 0.001, 1)
+material = SubResource("StandardMaterial3D_fo5ed")
 
 [node name="Walls" type="Node3D" parent="Map"]
 
@@ -87,19 +91,19 @@ size = Vector3(1, 0.5756836, 1)
 material = SubResource("StandardMaterial3D_go701")
 
 [node name="Box2" type="CSGBox3D" parent="Map"]
-transform = Transform3D(3.55, 0, 0, 0, 3.55, 0, 0, 0, 3.55, -9.422516, 0.3001083, 19.45922)
+transform = Transform3D(3.55, 0, 0, 0, 3.55, 0, 0, 0, 3.55, -9.422516, 0.13873975, 19.45922)
 use_collision = true
 collision_layer = 8
 collision_mask = 2
-size = Vector3(1, 0.8656616, 1)
+size = Vector3(1, 0.77474976, 1)
 material = SubResource("StandardMaterial3D_5a7ea")
 
 [node name="Box3" type="CSGBox3D" parent="Map"]
-transform = Transform3D(3.55, 0, 0, 0, 3.55, 0, 0, 0, 3.55, -3.2690015, 0.98886335, 19.45922)
+transform = Transform3D(3.55, 0, 0, 0, 3.55, 0, 0, 0, 3.55, -3.2690015, 0.7019318, 19.45922)
 use_collision = true
 collision_layer = 8
 collision_mask = 2
-size = Vector3(1, 1.2536926, 1)
+size = Vector3(1, 1.092041, 1)
 material = SubResource("StandardMaterial3D_8j60k")
 
 [node name="Player" parent="." instance=ExtResource("1_a02cp")]
