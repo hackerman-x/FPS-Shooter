@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dob7t2862kf64"]
+
+[ext_resource type="Script" uid="uid://cehq01ut6drfq" path="res://Scripts/bullet.gd" id="1_14k46"]
+[ext_resource type="PackedScene" uid="uid://l88ikvgerxc2" path="res://kenney_blaster/Models/GLB format/bullet-foam-tip.glb" id="1_vlxeq"]
+
+[node name="Bullet" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_14k46")
+
+[node name="bullet-foam-tip2" parent="." instance=ExtResource("1_vlxeq")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)

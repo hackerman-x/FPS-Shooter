@@ -107,3 +107,6 @@ size = Vector3(1, 1.092041, 1)
 material = SubResource("StandardMaterial3D_8j60k")
 
 [node name="Player" parent="." instance=ExtResource("1_a02cp")]
+
+[node name="Bullets" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26215553, 1.3251915, -0.95828485)

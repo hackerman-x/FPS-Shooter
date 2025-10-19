@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4fve71e3jotw"]
+
+[ext_resource type="PackedScene" uid="uid://2u6ph5kklvct" path="res://kenney_blaster/Models/GLB format/blaster-d.glb" id="1_i8ad3"]
+[ext_resource type="Script" uid="uid://br63d3ggwojo2" path="res://Scripts/rifle.gd" id="1_xtu1t"]
+
+[node name="Rifle" type="Node3D"]
+script = ExtResource("1_xtu1t")
+
+[node name="blaster-d2" parent="." instance=ExtResource("1_i8ad3")]
+
+[node name="ShootCooldown" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Muzzle" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.057932377, -0.3397829)
+
+[connection signal="timeout" from="ShootCooldown" to="." method="_on_shoot_cooldown_timeout"]
