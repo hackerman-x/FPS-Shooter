@@ -1,11 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dob7t2862kf64"]
+[gd_scene load_steps=4 format=3 uid="uid://dob7t2862kf64"]
 
 [ext_resource type="Script" uid="uid://cehq01ut6drfq" path="res://Scripts/bullet.gd" id="1_14k46"]
 [ext_resource type="PackedScene" uid="uid://l88ikvgerxc2" path="res://kenney_blaster/Models/GLB format/bullet-foam-tip.glb" id="1_vlxeq"]
 
-[node name="Bullet" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_14k46"]
+height = 2.7700195
+
+[node name="Bullet" type="RigidBody3D" groups=["Bullet"]]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+collision_layer = 4
+collision_mask = 257
+gravity_scale = 0.0
 script = ExtResource("1_14k46")
 
 [node name="bullet-foam-tip2" parent="." instance=ExtResource("1_vlxeq")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.025, 0, 0, 0, -1.0927848e-09, 0.025, 0, -0.025, -1.0927848e-09, 0, -1.4030294e-09, -0.03209757)
+shape = SubResource("CapsuleShape3D_14k46")

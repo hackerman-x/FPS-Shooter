@@ -10,7 +10,7 @@ points = PackedVector3Array(-0.12520654, -0.532801, -0.4805069, 0.022783129, 0.4
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
-collision_mask = 9
+collision_mask = 11
 script = ExtResource("1_v0iea")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -24,7 +24,7 @@ shape = SubResource("ConvexPolygonShape3D_v0iea")
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.719621, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Head"]
+[node name="PlayerCamera" type="Camera3D" parent="Head"]
 
-[node name="Rifle" parent="Head/Camera3D" instance=ExtResource("2_cvnsp")]
+[node name="Rifle" parent="Head/PlayerCamera" instance=ExtResource("2_cvnsp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26731992, -0.39348102, -0.45348144)

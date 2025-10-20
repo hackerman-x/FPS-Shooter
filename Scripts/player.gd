@@ -20,7 +20,7 @@ var gravity = 9.8
 var camera_set = false
 
 @onready var head = $Head
-@onready var camera = $Head/Camera3D
+@onready var camera = $Head/PlayerCamera
 
 func _ready() -> void:
 	if camera3d:
@@ -30,7 +30,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSETIVITY)
 		camera.rotate_x(-event.relative.y * SENSETIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func _process(_delta: float) -> void:
 	if not camera3d:
@@ -57,8 +57,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
-	if camera_set and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		$Head/Camera3D/Rifle.shoot()
 	
 	#SPRINT
 	if Input.is_action_pressed("sprint"):

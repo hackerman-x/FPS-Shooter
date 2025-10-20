@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cxki067pq17np"]
+[gd_scene load_steps=12 format=3 uid="uid://cxki067pq17np"]
 
 [ext_resource type="PackedScene" uid="uid://depc4iowkrjdy" path="res://Scenes/player.tscn" id="1_a02cp"]
+[ext_resource type="PackedScene" uid="uid://bnjpsak8igscj" path="res://Scenes/box.tscn" id="2_go701"]
+[ext_resource type="PackedScene" uid="uid://c03pg5iugxva1" path="res://Scenes/target.tscn" id="3_5a7ea"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yp4wr"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -44,7 +46,7 @@ shadow_enabled = true
 [node name="Floor" type="CSGBox3D" parent="Map"]
 transform = Transform3D(110.47895, 0, 0, 0, 1, 0, 0, 0, 111.24309, 0, -0.4995, 0)
 use_collision = true
-collision_mask = 2
+collision_mask = 10
 size = Vector3(1, 0.001, 1)
 material = SubResource("StandardMaterial3D_fo5ed")
 
@@ -54,7 +56,7 @@ material = SubResource("StandardMaterial3D_fo5ed")
 transform = Transform3D(1, 0, 0, 0, 2.32, 0, 0, 0, 107.89614, 55.49104, 0.7002197, -0.7639131)
 use_collision = true
 collision_layer = 8
-collision_mask = 2
+collision_mask = 6
 size = Vector3(1, 1.6036377, 1.0141602)
 material = SubResource("StandardMaterial3D_a02cp")
 
@@ -62,7 +64,7 @@ material = SubResource("StandardMaterial3D_a02cp")
 transform = Transform3D(1, 0, 0, 0, 2.32, 0, 0, 0, 107.89614, -55.03018, 0.7002197, -0.7375713)
 use_collision = true
 collision_layer = 8
-collision_mask = 2
+collision_mask = 6
 size = Vector3(1, 1.6036377, 1.0136719)
 material = SubResource("StandardMaterial3D_a02cp")
 
@@ -70,7 +72,7 @@ material = SubResource("StandardMaterial3D_a02cp")
 transform = Transform3D(-4.371139e-08, 0, 107.89614, 0, 2.32, 0, -1, 0, -4.7162903e-06, -0.02330172, 0.7002197, 53.533443)
 use_collision = true
 collision_layer = 8
-collision_mask = 2
+collision_mask = 6
 size = Vector3(1, 1.6036377, 1.0233154)
 material = SubResource("StandardMaterial3D_a02cp")
 
@@ -78,7 +80,7 @@ material = SubResource("StandardMaterial3D_a02cp")
 transform = Transform3D(-4.371139e-08, 0, 107.89614, 0, 2.32, 0, -1, 0, -4.7162903e-06, -0.02330172, 0.7002197, -55.07984)
 use_collision = true
 collision_layer = 8
-collision_mask = 2
+collision_mask = 6
 size = Vector3(1, 1.6036377, 1.0233154)
 material = SubResource("StandardMaterial3D_a02cp")
 
@@ -86,7 +88,7 @@ material = SubResource("StandardMaterial3D_a02cp")
 transform = Transform3D(3.55, 0, 0, 0, 3.55, 0, 0, 0, 3.55, -15.675789, -0.59793204, 19.45922)
 use_collision = true
 collision_layer = 8
-collision_mask = 2
+collision_mask = 6
 size = Vector3(1, 0.5756836, 1)
 material = SubResource("StandardMaterial3D_go701")
 
@@ -94,7 +96,7 @@ material = SubResource("StandardMaterial3D_go701")
 transform = Transform3D(3.55, 0, 0, 0, 3.55, 0, 0, 0, 3.55, -9.422516, 0.13873975, 19.45922)
 use_collision = true
 collision_layer = 8
-collision_mask = 2
+collision_mask = 6
 size = Vector3(1, 0.77474976, 1)
 material = SubResource("StandardMaterial3D_5a7ea")
 
@@ -102,11 +104,50 @@ material = SubResource("StandardMaterial3D_5a7ea")
 transform = Transform3D(3.55, 0, 0, 0, 3.55, 0, 0, 0, 3.55, -3.2690015, 0.7019318, 19.45922)
 use_collision = true
 collision_layer = 8
-collision_mask = 2
+collision_mask = 6
 size = Vector3(1, 1.092041, 1)
 material = SubResource("StandardMaterial3D_8j60k")
 
 [node name="Player" parent="." instance=ExtResource("1_a02cp")]
 
 [node name="Bullets" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26215553, 1.3251915, -0.95828485)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26215553, 1.3251915, -0.7246957)
+
+[node name="Boxes" type="Node3D" parent="."]
+
+[node name="Box" parent="Boxes" instance=ExtResource("2_go701")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.081, 0, -5)
+
+[node name="Box3" parent="Boxes" instance=ExtResource("2_go701")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0904535, 0, -5)
+
+[node name="Box4" parent="Boxes" instance=ExtResource("2_go701")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5795335, 1.1481017, -5)
+
+[node name="Box5" parent="Boxes" instance=ExtResource("2_go701")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.59542376, 1.1481017, -5)
+
+[node name="Box6" parent="Boxes" instance=ExtResource("2_go701")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09217483, 2.2734752, -5)
+
+[node name="Box2" parent="Boxes" instance=ExtResource("2_go701")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="Target" parent="." instance=ExtResource("3_5a7ea")]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -2.1538055, 0.8833333, 17.65533)
+
+[node name="Target2" parent="." instance=ExtResource("3_5a7ea")]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -2.7007594, 0.8833333, 17.65533)
+
+[node name="Target3" parent="." instance=ExtResource("3_5a7ea")]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -3.245066, 0.8833333, 17.65533)
+
+[node name="Target4" parent="." instance=ExtResource("3_5a7ea")]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -3.8816185, 0.8833333, 17.65533)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 950.0
+offset_top = 480.0
+offset_right = 955.0
+offset_bottom = 503.0
+text = "."

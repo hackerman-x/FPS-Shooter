@@ -1,18 +1,77 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4fve71e3jotw"]
+[gd_scene load_steps=9 format=3 uid="uid://b4fve71e3jotw"]
 
 [ext_resource type="PackedScene" uid="uid://2u6ph5kklvct" path="res://kenney_blaster/Models/GLB format/blaster-d.glb" id="1_i8ad3"]
-[ext_resource type="Script" uid="uid://br63d3ggwojo2" path="res://Scripts/rifle.gd" id="1_xtu1t"]
+[ext_resource type="Script" uid="uid://br63d3ggwojo2" path="res://Scripts/gun.gd" id="1_xtu1t"]
+[ext_resource type="Texture2D" uid="uid://bqp04dcpkpoud" path="res://Assets/muzzle-flash.png" id="3_13okl"]
+
+[sub_resource type="Curve" id="Curve_8cqct"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.19, 1), 0.0, 0.0, 0, 0, Vector2(0.19915256, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6u75y"]
+curve = SubResource("Curve_8cqct")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mcubx"]
+angle_min = -179.99998
+angle_max = 180.00002
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_6u75y")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwddi"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+albedo_texture = ExtResource("3_13okl")
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+proximity_fade_enabled = true
+proximity_fade_distance = 0.01
+
+[sub_resource type="QuadMesh" id="QuadMesh_dphja"]
+material = SubResource("StandardMaterial3D_wwddi")
+size = Vector2(0.2, 0.2)
 
 [node name="Rifle" type="Node3D"]
 script = ExtResource("1_xtu1t")
+shooting_range = 1000.0
 
 [node name="blaster-d2" parent="." instance=ExtResource("1_i8ad3")]
 
 [node name="ShootCooldown" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
 
 [node name="Muzzle" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.057932377, -0.3397829)
 
+[node name="Muzzle_particels" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06131743, -0.46118054)
+cast_shadow = 0
+gi_mode = 0
+emitting = false
+amount = 1
+lifetime = 0.1
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_mcubx")
+draw_pass_1 = SubResource("QuadMesh_dphja")
+
+[node name="MuzzleFlash" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.059634976, -0.45464224)
+visible = false
+light_color = Color(1, 1, 0.5686275, 1)
+light_bake_mode = 0
+omni_range = 6.0
+omni_attenuation = 2.5
+
+[node name="Bullet_Hole_Timer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
 [connection signal="timeout" from="ShootCooldown" to="." method="_on_shoot_cooldown_timeout"]
+[connection signal="timeout" from="Bullet_Hole_Timer" to="." method="_on_bullet_hole_timer_timeout"]

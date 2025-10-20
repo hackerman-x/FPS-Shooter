@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c03pg5iugxva1"]
+
+[ext_resource type="Script" uid="uid://cr34fc01abjbv" path="res://Scripts/target.gd" id="1_ls7vh"]
+[ext_resource type="PackedScene" uid="uid://bkha6vx5d8mpg" path="res://kenney_blaster/Models/GLB format/target-detail.glb" id="1_vq1qf"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vq1qf"]
+height = 0.09423828
+radius = 0.16015625
+
+[node name="Target" type="Area3D"]
+collision_layer = 32
+collision_mask = 6
+script = ExtResource("1_ls7vh")
+
+[node name="target-detail2" parent="." instance=ExtResource("1_vq1qf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06343746, 0, -0.18255943)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, 0, 0.17705822, 0)
+shape = SubResource("CylinderShape3D_vq1qf")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
